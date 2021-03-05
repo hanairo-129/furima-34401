@@ -4,15 +4,18 @@
 
 ## users テーブル
 
-| Column              | Type   | Options     |
-| ------------------- | ------ | ----------- |
-| email               | string | unique:true |
-| encrypted_password  | string | null: false |
-| last_name           | string | null: false | #苗字
-| last_name.reading   | string | null: false | #苗字ヨミガナ
-| first_name          | string | null: false | #名前
-| first_name.reading  | string | null: false | #名前ヨミガナ
-| nick_name           | string | null: false | #ニックネーム
+| Column              | Type    | Options     |
+| ------------------- | ------- | ----------- |
+| email               | string  | unique:true |
+| encrypted_password  | string  | null: false |
+| last_name           | string  | null: false | #苗字
+| last_name.reading   | string  | null: false | #苗字ヨミガナ
+| first_name          | string  | null: false | #名前
+| first_name.reading  | string  | null: false | #名前ヨミガナ
+| nick_name           | string  | null: false | #ニックネーム
+| birthday_year       | integer | null: false | #生年月日：年
+| birthday_month      | integer | null: false | #生年月日：月
+| birthday_day        | integer | null: false | #生年月日：日
 
 ### Association
 
@@ -36,19 +39,19 @@
 ### Association
 
 - belongs_to :user
-- has_one :records
+- has_one :record
 
 ## records テーブル
 
 | Column     | Type       | Options           |
 | ---------- | ---------- | ----------------- |
 | user       | references | foreign_key: true |
-| items      | references | foreign_key: true |
+| item       | references | foreign_key: true |
 ### Association
 
 - belongs_to :user
-- belongs_to :items
-- has_one :addresses
+- belongs_to :item
+- has_one :address
 
 ## addresses テーブル  #発送先情報
 
@@ -60,8 +63,8 @@
 | house_number  | string     | null: false       | #丁目、番地、号
 | building_name | string     |                   | #建物名
 | phone_number  | string     | null: false       | #電話番号
-| records       | references | foreign_key: true |
+| record        | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :records
+- belongs_to :record
