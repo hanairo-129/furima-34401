@@ -4,13 +4,15 @@
 
 ## users テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| email         | string | null: false |
-| password      | string | null: false |
-| name          | string | null: false |
-| name.reading  | string | null: false | #ヨミガナ
-| nick_name     | string | null: false | #ニックネーム
+| Column              | Type   | Options     |
+| ------------------- | ------ | ----------- |
+| email               | string | unique:true |
+| encrypted_password  | string | null: false |
+| last_name           | string | null: false | #苗字
+| last_name.reading   | string | null: false | #苗字ヨミガナ
+| first_name          | string | null: false | #名前
+| first_name.reading  | string | null: false | #名前ヨミガナ
+| nick_name           | string | null: false | #ニックネーム
 
 ### Association
 
@@ -19,13 +21,17 @@
 
 ## items テーブル
 
-| Column     | Type          | Options           |
-| ---------- | ------------- | ----------------- |
-| item.name  | string        | null: false       |
-| price      | string        | null: false       |
-| details    | text          | null: false       | #詳細
-| image      | ActiveStorage |                   |
-| user       | references    | foreign_key: true |
+| Column      | Type          | Options           |
+| ----------- | ------------- | ----------------- |
+| item.name   | string        | null: false       |
+| status_id   | integer       | null: false       |#商品の状態
+| delivery_id | integer       | null: false       |#配送料の負担
+| area_id     | integer       | null: false       |#発送元の地域
+| times_id    | integer       | null: false       |#発送までの日数
+| category_id | integer       | null: false       |#カテゴリー
+| price       | integer       | null: false       |
+| details     | text          | null: false       | #詳細
+| user        | references    | foreign_key: true |
 
 ### Association
 
