@@ -42,7 +42,6 @@
 
 | Column     | Type       | Options           |
 | ---------- | ---------- | ----------------- |
-| price      | integer    | null: false       |
 | user       | references | foreign_key: true |
 | items      | references | foreign_key: true |
 ### Association
@@ -56,10 +55,10 @@
 | Column        | Type       | Options           |
 | ------------- | ---------- | ----------------- |
 | postal_code   | string     | null: false       | #郵便番号
-| prefecture    | integer    | null: false       | #都道府県
+| area_id       | integer    | null: false       | #都道府県
 | city          | string     | null: false       | #市町村
-| house_number  | text       | null: false       | #丁目、番地、号
-| building_name | text       |                   | #建物名
+| house_number  | string     | null: false       | #丁目、番地、号
+| building_name | string     |                   | #建物名
 | phone_number  | string     | null: false       | #電話番号
 | records       | references | foreign_key: true |
 
