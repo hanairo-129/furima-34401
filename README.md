@@ -4,18 +4,16 @@
 
 ## users テーブル
 
-| Column              | Type    | Options     |
-| ------------------- | ------- | ----------- |
-| email               | string  | unique:true |
-| encrypted_password  | string  | null: false |
-| last_name           | string  | null: false | #苗字
-| last_name.reading   | string  | null: false | #苗字ヨミガナ
-| first_name          | string  | null: false | #名前
-| first_name.reading  | string  | null: false | #名前ヨミガナ
-| nick_name           | string  | null: false | #ニックネーム
-| birthday_year       | integer | null: false | #生年月日：年
-| birthday_month      | integer | null: false | #生年月日：月
-| birthday_day        | integer | null: false | #生年月日：日
+| Column              | Type    | Options                  |
+| ------------------- | ------- | ------------------------ |
+| email               | string  | unique:true, null: false |
+| encrypted_password  | string  | null: false              |
+| last_name           | string  | null: false              | #苗字
+| last_name_reading   | string  | null: false              | #苗字ヨミガナ 
+| first_name          | string  | null: false              | #名前
+| first_name_reading  | string  | null: false              | #名前ヨミガナ
+| nick_name           | string  | null: false              | #ニックネーム
+| birthday            | date    | null: false              | #ニックネーム
 
 ### Association
 
@@ -26,11 +24,11 @@
 
 | Column      | Type          | Options           |
 | ----------- | ------------- | ----------------- |
-| item.name   | string        | null: false       |
+| item_name   | string        | null: false       |
 | status_id   | integer       | null: false       |#商品の状態
 | delivery_id | integer       | null: false       |#配送料の負担
 | area_id     | integer       | null: false       |#発送元の地域
-| times_id    | integer       | null: false       |#発送までの日数
+| time_id     | integer       | null: false       |#発送までの日数
 | category_id | integer       | null: false       |#カテゴリー
 | price       | integer       | null: false       |
 | details     | text          | null: false       | #詳細
