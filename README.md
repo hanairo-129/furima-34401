@@ -13,7 +13,7 @@
 | first_name          | string  | null: false              | #名前
 | first_name_reading  | string  | null: false              | #名前ヨミガナ
 | nick_name           | string  | null: false              | #ニックネーム
-| birthday            | date    | null: false              | #ニックネーム
+| birthday            | date    | null: false              | #生年月日
 
 ### Association
 
