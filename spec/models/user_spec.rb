@@ -1,9 +1,11 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
+
+  before do
+    @user = FactoryBot.build(:user)
+  end
+
   context "ユーザー新規登録ができる時" do
-      before do
-        @user = FactoryBot.build(:user)
-      end
 
       it "nick_nameが空でなければ登録できること" do
         @user.nick_name = 'test'
@@ -50,9 +52,6 @@ RSpec.describe User, type: :model do
     end
     
   context "ユーザー新規登録ができない時" do
-    before do
-      @user = FactoryBot.build(:user)
-    end
 
     it "nick_nameが空だと登録できない" do
       @user.nick_name = ''
