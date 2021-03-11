@@ -1,9 +1,58 @@
 require 'rails_helper'
 RSpec.describe User, type: :model do
-  describe "ユーザー新規登録" do
+  context "ユーザー新規登録ができる時" do
       before do
         @user = FactoryBot.build(:user)
       end
+
+      it "nick_nameが空でなければ登録できること" do
+        @user.nick_name = 'test'
+        @user.valid?
+        expect(@user).to be_valid
+      end
+
+      it 'passwordが7文字以上、かつ半角英数字であれば登録できること' do
+        @user.password = 'abc1234'
+        @user.password_confirmation = 'abc1234'
+        expect(@user).to be_valid
+      end
+
+      it "last_nameが全角（漢字・ひらがな・カタカナ）であれば登録できる" do
+        @user.last_name = '安倍あべアベ'
+        @user.valid?
+        expect(@user).to be_valid
+      end
+
+      it "first_nameが全角（漢字・ひらがな・カタカナ）であれば登録できる" do
+        @user.first_name = '太郎たろうタロウ'
+        @user.valid?
+        expect(@user).to be_valid
+      end
+
+      it "last_name_readingが全角(カタカナ)であれば登録できる" do
+        @user.last_name_reading = 'アベ'
+        @user.valid?
+        expect(@user).to be_valid
+      end
+
+      it "first_name_readingが全角(カタカナ)であれば登録できる" do
+        @user.last_name_reading = 'タロウ'
+        @user.valid?
+        expect(@user).to be_valid
+      end
+
+      it "birthdayが空でなければ登録できる" do
+        @user.birthday = ('2020/2/2')
+        @user.valid?
+        expect(@user).to be_valid
+      end
+
+    end
+    
+  context "ユーザー新規登録ができない時" do
+    before do
+      @user = FactoryBot.build(:user)
+    end
 
     it "nick_nameが空だと登録できない" do
       @user.nick_name = ''
@@ -102,12 +151,7 @@ RSpec.describe User, type: :model do
       expect(user.errors.full_messages).to include("Birthday can't be blank")
     end
 
-    it 'passwordが7文字以上であれば登録できること' do
-      @user.password = 'abc1234'
-      @user.password_confirmation = 'abc1234'
-      expect(@user).to be_valid
-    end
-
+    
     it 'passwordが6文字以下であれば登録できないこと' do
       @user.password = 'abc123'
       @user.password_confirmation = 'abc123'
@@ -121,8 +165,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
-
-    
-
   end
 end
