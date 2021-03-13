@@ -35,37 +35,37 @@ RSpec.describe Item, type: :model do
     end
 
     it "category_idが選択されていないと出品できない" do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category Select")
     end
 
     it "status_idが選択されていないと出品できない" do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Status Select")
     end
 
     it "delivery_idが選択されていないと出品できない" do
-      @item.delivery_id = '1'
+      @item.delivery_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery Select")
     end
 
     it "area_idが選択されていないと出品できない" do
-      @item.area_id = '1'
+      @item.area_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Area Select")
     end
 
     it "post_time_idが選択されていないと出品できない" do
-      @item.post_time_id = '1'
+      @item.post_time_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Post time Select")
     end
 
     it "priceが300円未満だと出品できない" do
-      @item.price = '200'
+      @item.price = 200
       @item.valid?
       expect(@item.errors.full_messages).to include("Price Out of setting range")
     end
