@@ -1,9 +1,3 @@
-<% if user_signed_in? %>
-  <% if current_user.id != @item.user_id %>
-  <%= link_to '戻る', root_path, class: "login" %>
-  <% end %>
-
-  <% if current_user.id == @item.user_id %>
 
 <div class="items-sell-contents">
   <header class="items-sell-header">
@@ -149,7 +143,3 @@
     </p>
   </footer>
 </div>
-<% end %>
-<% end %>
-
-<%= link_to 'ログイン', new_user_session_path, class: "login" %>
