@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:edit, :show, :update]
+  before_action :cheak_user, only: [:edit, :update]
 
   
   def index
@@ -46,13 +47,12 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-
     @item = Item.find(params[:id])
+  end
 
-    if user_signed_in?
-      if current_user.id != @item.user.id
-        redirect_to root_path
-      end
+  def cheak_user
+    if current_user.id != @item.user.id
+      redirect_to root_path
     end
   end
 end
