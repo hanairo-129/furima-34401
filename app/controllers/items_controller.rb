@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :cheak_user, only: [:edit, :update, :destroy]
+  before_action :item_find, only: [:edit, :update, :destroy]
 
   
   def index
@@ -26,9 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.record.present?
-      redirect_to root_path
-    end
+    
   end
 
   def update
@@ -61,4 +60,11 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def item_find
+    if @item.record.present?
+      redirect_to root_path
+    end
+  end
+
 end

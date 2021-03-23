@@ -14,7 +14,14 @@ RSpec.describe RecordAddress, type: :model do
       expect(@record_address).to be_valid
      end
 
-    end
+
+    it 'building_nameがなくても購入できる' do
+      @record_address.building_name = ''
+      @record_address.valid?
+      expect(@record_address).to be_valid
+     end
+
+  end
     
   context "商品が購入できない時" do
 
@@ -22,6 +29,12 @@ RSpec.describe RecordAddress, type: :model do
       @record_address.postal_code = ''
       @record_address.valid?
       expect(@record_address.errors.full_messages).to include("Postal code can't be blank")
+    end
+
+    it "postal_codeは-(ハイフン)が入力されていないと購入できない" do
+      @record_address.postal_code = '1234567'
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("Postal code is invalid")
     end
 
     it "area_idが選択されていないと購入できない" do
@@ -48,34 +61,24 @@ RSpec.describe RecordAddress, type: :model do
       expect(@record_address.errors.full_messages).to include("Phone number is invalid")
     end
 
+    it "phone_numberに数字以外が入力されていないと購入できない" do
+      @record_address.phone_number = 'ABC'
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it "phone_numberが11桁を超えると購入できない" do
+      @record_address.phone_number = '123456789012'
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("Phone number is invalid")
+    end
+
     it "tokenが入力されていないと購入できない" do
       @record_address.token = ''
       @record_address.valid?
       expect(@record_address.errors.full_messages).to include("Token can't be blank")
     end
 
-    it "numberが入力されていないと購入できない" do
-      @record_address.number = ''
-      @record_address.valid?
-      expect(@record_address.errors.full_messages).to include("Number can't be blank")
-    end
-
-    it "exp_monthが入力されていないと購入できない" do
-      @record_address.exp_month = ''
-      @record_address.valid?
-      expect(@record_address.errors.full_messages).to include("Exp month can't be blank")
-    end
-
-    it "exp_yearが入力されていないと購入できない" do
-      @record_address.exp_year = ''
-      @record_address.valid?
-      expect(@record_address.errors.full_messages).to include("Exp year can't be blank")
-    end
-
-    it "cvcが入力されていないと購入できない" do
-      @record_address.cvc = ''
-      @record_address.valid?
-      expect(@record_address.errors.full_messages).to include("Cvc can't be blank")
-    end
+    
   end
 end

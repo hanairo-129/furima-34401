@@ -31,12 +31,15 @@ class OrdersController < ApplicationController
     if current_user.id == @item.user.id
       redirect_to root_path
     end
+
+    if @item.record.present?
+      redirect_to root_path
+    end
   end
 
   def order_params
     params.require(:record_address).permit(:postal_code, 
-      :area_id, :city, :house_number, :building_name, 
-      :number, :exp_month, :exp_year, :cvc,
+      :area_id, :city, :house_number, :building_name,
       :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
   end
 
