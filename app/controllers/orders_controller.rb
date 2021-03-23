@@ -7,9 +7,6 @@ class OrdersController < ApplicationController
     @record_address = RecordAddress.new
   end
 
-  def new
-  end
-
   def create
     @record_address = RecordAddress.new(order_params)
     if @record_address.valid?
@@ -42,7 +39,7 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: Item.find(params[:item_id]).price,
+        amount: @item.price,
         card: order_params[:token],
         currency: 'jpy'
       )
