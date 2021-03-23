@@ -5,9 +5,10 @@ FactoryBot.define do
     area_id           {2}
     city              {"市場"}
     house_number      {"番地"}
-    building_name     {}
+    building_name     {"建物"}
     phone_number      {'09012345678'}
     token             {"tok_abcdefghijk00000000000000000"}
-
+    user_id           {100}
+    item_id           {100}
   end
 end

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
   before_action :cheak_user, only: [:index, :create]
 
@@ -28,11 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def cheak_user
-    if current_user.id == @item.user.id
-      redirect_to root_path
-    end
-
-    if @item.record.present?
+    if current_user.id == @item.user.id || @item.record.present?
       redirect_to root_path
     end
   end

@@ -79,6 +79,16 @@ RSpec.describe RecordAddress, type: :model do
       expect(@record_address.errors.full_messages).to include("Token can't be blank")
     end
 
-    
+    it "user_idが入力されていないと購入できない" do
+      @record_address.user_id = ''
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "item_idが入力されていないと購入できない" do
+      @record_address.item_id = ''
+      @record_address.valid?
+      expect(@record_address.errors.full_messages).to include("Item can't be blank")
+    end
   end
 end
