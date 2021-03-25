@@ -46,10 +46,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Status Select")
     end
 
-    it "delivery_idが選択されていないと出品できない" do
-      @item.delivery_id = 1
+    it "shipping_fee_idが選択されていないと出品できない" do
+      @item.shipping_fee_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery Select")
+      expect(@item.errors.full_messages).to include("Shipping fee Select")
     end
 
     it "area_idが選択されていないと出品できない" do
@@ -58,10 +58,10 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Area Select")
     end
 
-    it "post_time_idが選択されていないと出品できない" do
-      @item.post_time_id = 1
+    it "scheduled_delivery_idが選択されていないと出品できない" do
+      @item.scheduled_delivery_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Post time Select")
+      expect(@item.errors.full_messages).to include("Scheduled delivery Select")
     end
 
     it "priceが300円未満だと出品できない" do

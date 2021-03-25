@@ -22,17 +22,17 @@
 
 ## items テーブル
 
-| Column      | Type          | Options           |
-| ----------- | ------------- | ----------------- |
-| item_name   | string        | null: false       |
-| status_id   | integer       | null: false       |#商品の状態
-| delivery_id | integer       | null: false       |#配送料の負担
-| area_id     | integer       | null: false       |#発送元の地域
-| time_id     | integer       | null: false       |#発送までの日数
-| category_id | integer       | null: false       |#カテゴリー
-| price       | integer       | null: false       |
-| details     | text          | null: false       | #詳細
-| user        | references    | foreign_key: true |
+| Column                | Type          | Options           |
+| --------------------- | ------------- | ----------------- |
+| item_name             | string        | null: false       |
+| status_id             | integer       | null: false       |#商品の状態
+| shipping_fee_id       | integer       | null: false       |#配送料の負担
+| area_id               | integer       | null: false       |#発送元の地域
+| scheduled_delivery_id | integer       | null: false       |#発送までの日数
+| category_id           | integer       | null: false       |#カテゴリー
+| price                 | integer       | null: false       |
+| details               | text          | null: false       | #詳細
+| user                  | references    | foreign_key: true |
 
 ### Association
 

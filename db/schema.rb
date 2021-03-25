@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_020512) do
+ActiveRecord::Schema.define(version: 2021_03_25_091647) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_020512) do
     t.string "city", default: ""
     t.string "house_number", default: ""
     t.string "building_name"
-    t.string "phone_number", default: ""
+    t.string "phone_number"
     t.bigint "record_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -51,24 +51,14 @@ ActiveRecord::Schema.define(version: 2021_03_18_020512) do
     t.text "details", null: false
     t.integer "category_id", null: false
     t.integer "status_id", null: false
-    t.integer "delivery_id", null: false
+    t.integer "shipping_fee_id", null: false
     t.integer "area_id", null: false
-    t.integer "post_time_id", null: false
+    t.integer "scheduled_delivery_id", null: false
     t.integer "price", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "racord_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -78,6 +68,16 @@ ActiveRecord::Schema.define(version: 2021_03_18_020512) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_records_on_item_id"
     t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
+  create_table "scheduled_deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shipping_fees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
